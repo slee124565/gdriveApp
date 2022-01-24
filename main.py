@@ -51,10 +51,14 @@ def main():
         # get_calendar_list(service)
         calendars = [
             'gary.li@flh.com.tw',
-            'benson.lee@flh.com.tw'
+            'benson.lee@flh.com.tw',
+            'emerson.hsiao@flh.com.tw',
+            'mark.chen@flh.com.tw'
         ]
-        rows = [['status', 'summary', 'tag', 'gw', 'hour', 'year', 'week', 'start', 'end', 'category', 'organizer', 'id']]
+        rows = [['status', 'summary', 'tag', 'gw', 'hour', 'year', 'week', 'start', 'end',
+                 'calendar', 'organizer', 'id']]
         for calendar_id in calendars:
+            print(f'get calendar {calendar_id} event ...')
             events = get_calendar_events(service=service,
                                          calendar_id=calendar_id,
                                          date_since=datetime.date(2021, 1, 1))
@@ -129,6 +133,7 @@ def _parsing_events_result(events_result, calendar_id):
             tag = 'Other'
 
         # gw
+        gw = ''
         if tag == '施工':
             if summary.find('[F') == 0:
                 if summary.find('[Ferqo') == 0:
