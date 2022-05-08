@@ -50,10 +50,11 @@ def main():
         # get_upcoming_10_events(service)
         # get_calendar_list(service)
         calendars = [
-            'gary.li@flh.com.tw',
-            'benson.lee@flh.com.tw',
-            'emerson.hsiao@flh.com.tw',
-            'mark.chen@flh.com.tw'
+            'lee.shiueh@flh.com.tw'
+            # 'gary.li@flh.com.tw',
+            # 'benson.lee@flh.com.tw',
+            # 'emerson.hsiao@flh.com.tw',
+            # 'mark.chen@flh.com.tw'
         ]
         rows = [['status', 'summary', 'tag', 'gw', 'hour', 'year', 'week', 'start', 'end',
                  'calendar', 'organizer', 'id']]
@@ -154,8 +155,10 @@ def _parsing_events_result(events_result, calendar_id):
         end = datetime.datetime.fromisoformat(_end)
         date_diff = end - start
         hours = date_diff.seconds / 3600
-        start = start.strftime('%Y-%m-%d %H:%M:%S')
-        end = end.strftime('%Y-%m-%d %H:%M:%S')
+        # start = start.strftime('%Y-%m-%d %H:%M:%S')
+        # end = end.strftime('%Y-%m-%d %H:%M:%S')
+        start = start.isoformat()
+        end = end.isoformat()
         data = [event_status, summary, tag, gw, hours, yr, wk, start, end, calendar_id, organizer, event_id]
         rows.append(data)
     return rows
